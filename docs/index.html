@@ -20,13 +20,13 @@
     }
 
     .badge {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(26, 122, 60, 0.15);
+      border: 1px solid rgba(26, 122, 60, 0.4);
       border-radius: 999px;
       padding: 6px 16px;
       font-size: 12px;
       letter-spacing: 0.5px;
-      color: #aaa;
+      color: #4ade80;
       margin-bottom: 32px;
     }
 
@@ -40,14 +40,14 @@
     }
 
     h1 span {
-      background: linear-gradient(135deg, #fff 40%, #666);
+      background: linear-gradient(135deg, #fff 30%, #1a7a3c);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     p.sub {
       font-size: 18px;
-      color: #888;
+      color: #777;
       text-align: center;
       max-width: 420px;
       line-height: 1.6;
@@ -71,44 +71,47 @@
       font-size: 15px;
       font-weight: 600;
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: opacity 0.15s, transform 0.15s;
     }
-    .btn:hover { opacity: 0.8; }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
     .btn-primary {
-      background: #fff;
-      color: #000;
+      background: #1a7a3c;
+      color: #fff;
+      box-shadow: 0 0 24px rgba(26,122,60,0.35);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #aaa;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      max-width: 780px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      max-width: 760px;
       width: 100%;
     }
 
     .feature {
-      background: rgba(255,255,255,0.04);
+      background: rgba(14,14,14,0.97);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px;
-      padding: 24px 20px;
+      padding: 22px 18px;
+      transition: border-color 0.2s;
     }
+    .feature:hover { border-color: rgba(26,122,60,0.4); }
 
-    .feature .icon { font-size: 22px; margin-bottom: 10px; }
-    .feature h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-    .feature p { font-size: 13px; color: #666; line-height: 1.5; }
+    .feature .icon { font-size: 20px; margin-bottom: 10px; }
+    .feature h3 { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #e0e0e0; }
+    .feature p { font-size: 12px; color: #555; line-height: 1.55; }
 
     footer {
       margin-top: 80px;
-      font-size: 13px;
-      color: #444;
+      font-size: 12px;
+      color: #333;
     }
   </style>
 </head>
@@ -122,7 +125,7 @@
 
   <div class="buttons">
     <a class="btn btn-primary" href="https://github.com/disow2026-eng/Pinn/releases/latest/download/Pinn-12-Windows.zip">
-      Download for Windows
+      ↓ Download for Windows
     </a>
     <a class="btn btn-secondary" href="https://github.com/disow2026-eng/Pinn">
       View on GitHub
@@ -137,8 +140,8 @@
     </div>
     <div class="feature">
       <div class="icon">⌨️</div>
-      <h3>Hotkey access</h3>
-      <p>Press Ctrl+Shift+P anywhere to show or hide Pinn instantly.</p>
+      <h3>Hotkey</h3>
+      <p>Press Ctrl+Shift+P anywhere to show or hide instantly.</p>
     </div>
     <div class="feature">
       <div class="icon">📸</div>
@@ -148,7 +151,7 @@
     <div class="feature">
       <div class="icon">✅</div>
       <h3>Verified answers</h3>
-      <p>AI double-checks every answer before showing it to you.</p>
+      <p>AI checks every answer before showing it to you.</p>
     </div>
   </div>
 
