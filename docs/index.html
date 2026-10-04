@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinn — AI that stays out of sight</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      color: #aaa;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 80px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      text-align: center;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #fff 40%, #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.sub {
+      font-size: 18px;
+      color: #888;
+      text-align: center;
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 80px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.8; }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 780px;
+      width: 100%;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 24px 20px;
+    }
+
+    .feature .icon { font-size: 22px; margin-bottom: 10px; }
+    .feature h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .feature p { font-size: 13px; color: #666; line-height: 1.5; }
+
+    footer {
+      margin-top: 80px;
+      font-size: 13px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="badge">Pinn 12 — Now available</div>
+
+  <h1><span>AI that stays<br>out of sight.</span></h1>
+
+  <p class="sub">A hidden AI assistant that lives on your screen. No dock icon. No taskbar. Just press a hotkey.</p>
+
+  <div class="buttons">
+    <a class="btn btn-primary" href="https://github.com/disow2026-eng/Pinn/releases/latest/download/Pinn-12-Windows.zip">
+      Download for Windows
+    </a>
+    <a class="btn btn-secondary" href="https://github.com/disow2026-eng/Pinn">
+      View on GitHub
+    </a>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="icon">👁</div>
+      <h3>Invisible</h3>
+      <p>Hidden from screen share, recordings, and the taskbar.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">⌨️</div>
+      <h3>Hotkey access</h3>
+      <p>Press Ctrl+Shift+P anywhere to show or hide Pinn instantly.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">📸</div>
+      <h3>Screenshot AI</h3>
+      <p>Take a screenshot and Pinn analyzes it immediately.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">✅</div>
+      <h3>Verified answers</h3>
+      <p>AI double-checks every answer before showing it to you.</p>
+    </div>
+  </div>
+
+  <footer>© 2026 Pinn</footer>
+
+</body>
+</html>
