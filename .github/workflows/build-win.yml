@@ -1,0 +1,62 @@
+name: Build Pinn 12 for Windows
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create config.js from secret
+        run: |
+          echo "module.exports = { GROQ_API_KEY: '${{ secrets.GROQ_API_KEY }}' }" > config.js
+        shell: bash
+
+      - name: Build Windows installer
+        run: npm run build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload installer as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Pinn-12-Windows
+          path: dist/*.exe
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.12
+          name: Pinn 12 — Windows
+          body: |
+            ## Pinn 12 for Windows 11
+
+            **Install:** Run the `.exe` installer, Pinn starts automatically.
+
+            **Hotkey:** `Ctrl+Shift+P` to show/hide.
+
+            ### What's new in Pinn 12
+            - Bouncing bubble UI — click to expand full chat box
+            - Resizable box (drag any edge or corner)
+            - AI double-checks every answer before showing it
+            - Draggable bubble — move it anywhere on screen
+            - Content protection (invisible in screen share/recording)
+          files: dist/*.exe
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

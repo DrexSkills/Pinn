@@ -1,0 +1,47 @@
+{
+  "name": "pinn",
+  "version": "1.0.12",
+  "description": "Pinn — AI that stays out of sight",
+  "main": "main.js",
+  "author": "Pinn",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "npx electron-builder --win --x64",
+    "build:mac": "npx electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.pinn.app",
+    "productName": "Pinn",
+    "copyright": "Copyright © 2026 Pinn",
+    "icon": "assets/icon",
+    "mac": {
+      "icon": "assets/icon.icns",
+      "target": [
+        { "target": "zip", "arch": ["universal"] }
+      ],
+      "category": "public.app-category.productivity",
+      "identity": null,
+      "x64ArchFiles": "*"
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [{ "target": "portable", "arch": ["x64"] }]
+    },
+    "files": [
+      "**/*",
+      "!node_modules/.cache",
+      "!dist",
+      "!releases",
+      "!*.md"
+    ]
+  },
+  "keywords": [],
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^26.0.0"
+  },
+  "dependencies": {
+    "pdf-parse": "^2.4.5"
+  }
+}
