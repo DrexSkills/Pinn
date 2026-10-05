@@ -3,124 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pinn — AI that stays out of sight</title>
+  <title>Pinn — Hidden AI for Mac & Windows</title>
+  <meta name="description" content="A free invisible AI assistant for your desktop. Press a shortcut, get an answer, disappear." />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #f8f8f6;
-      color: #111;
+      background: #0a0a0a;
+      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
       padding: 40px 20px;
     }
 
-    .badge {
-      background: rgba(26, 122, 60, 0.1);
-      border: 1px solid rgba(26, 122, 60, 0.3);
-      border-radius: 999px;
-      padding: 6px 16px;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      color: #1a7a3c;
-      margin-bottom: 32px;
-      font-weight: 500;
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+      color: #fff;
     }
+    .logo span { color: #22c55e; }
 
     h1 {
-      font-size: clamp(42px, 8vw, 80px);
-      font-weight: 700;
-      letter-spacing: -2.5px;
-      text-align: center;
-      line-height: 1.05;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
       margin-bottom: 20px;
-      color: #0a0a0a;
     }
-
-    h1 span {
-      background: linear-gradient(135deg, #0a0a0a 30%, #1a7a3c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    h1 em { font-style: normal; color: #22c55e; }
 
     p.sub {
-      font-size: 18px;
-      color: #888;
-      text-align: center;
-      max-width: 420px;
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(255,255,255,0.45);
+      max-width: 480px;
       line-height: 1.6;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
-    .buttons {
+    .btn {
+      display: inline-block;
+      background: #22c55e;
+      color: #000;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .platforms {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .features {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 80px;
+      margin-top: 64px;
+      max-width: 560px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-size: 15px;
+    .tag {
+      font-size: 12px;
       font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.15s, transform 0.15s;
-    }
-    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
-    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-    .btn-primary {
-      background: #1a7a3c;
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(26,122,60,0.25);
-    }
-
-    .btn-secondary {
-      background: #fff;
-      color: #333;
-      border: 1px solid #e0e0e0;
+      color: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 6px 14px;
     }
 
     footer {
-      margin-top: 80px;
+      position: fixed;
+      bottom: 24px;
       font-size: 12px;
-      color: #bbb;
+      color: rgba(255,255,255,0.15);
     }
   </style>
 </head>
 <body>
 
-  <div class="badge">Pinn 12 — Now available</div>
+  <div class="logo"><span>.</span>pinn</div>
 
-  <h1><span>AI that stays<br>out of sight.</span></h1>
+  <h1>AI that stays<br><em>out of sight.</em></h1>
 
-  <p class="sub">A hidden AI assistant that lives on your screen. No dock icon. No taskbar. Just press a hotkey.</p>
+  <p class="sub">press a shortcut, ask anything, disappear. no icon, no dock, no trace. works anywhere — even inside lockdown browser.</p>
 
-  <div class="buttons">
-    <a class="btn btn-primary" href="https://github.com/disow2026-eng/Pinn/releases/latest/download/Pinn-12-Windows.zip">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-      Download for Windows
-    </a>
-    <a class="btn btn-secondary" href="https://github.com/disow2026-eng/Pinn">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-      </svg>
-      View on GitHub
-    </a>
+  <a class="btn" href="https://github.com/disow2026-eng/Pinn/releases/tag/v1.0.12" target="_blank">
+    download free
+  </a>
+
+  <div class="platforms">mac &amp; windows &nbsp;·&nbsp; free forever</div>
+
+  <div class="features">
+    <span class="tag">invisible to screen recording</span>
+    <span class="tag">no account needed</span>
+    <span class="tag">screenshot + AI</span>
+    <span class="tag">lockdown browser</span>
+    <span class="tag">auto starts on login</span>
+    <span class="tag">no telemetry</span>
   </div>
 
-  <footer>© 2026 Pinn</footer>
+  <footer>built by Drex</footer>
 
 </body>
 </html>
