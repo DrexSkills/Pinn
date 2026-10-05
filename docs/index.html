@@ -9,110 +9,173 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0a0a0a;
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
+      background: #080808;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .blob-1 { width: 500px; height: 500px; background: #22c55e; top: -100px; left: -100px; }
+    .blob-2 { width: 400px; height: 400px; background: #15803d; bottom: -80px; right: -80px; }
+
+    .card {
+      position: relative;
+      background: rgba(14, 14, 14, 0.75);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 52px 48px;
+      max-width: 480px;
+      width: 100%;
+      margin: 20px;
       text-align: center;
-      padding: 40px 20px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.05);
     }
 
     .logo {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
-      margin-bottom: 48px;
       color: #fff;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .logo span { color: #22c55e; }
+    .logo-dot { color: #22c55e; font-size: 22px; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #22c55e;
+      margin-bottom: 28px;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+    }
 
     h1 {
-      font-size: clamp(36px, 6vw, 64px);
+      font-size: clamp(30px, 5vw, 42px);
       font-weight: 800;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       line-height: 1.1;
-      margin-bottom: 20px;
+      color: #fff;
+      margin-bottom: 16px;
     }
     h1 em { font-style: normal; color: #22c55e; }
 
     p.sub {
-      font-size: clamp(15px, 2vw, 18px);
-      color: rgba(255,255,255,0.45);
-      max-width: 480px;
-      line-height: 1.6;
-      margin-bottom: 40px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin-bottom: 36px;
     }
 
     .btn {
-      display: inline-block;
+      display: block;
       background: #22c55e;
       color: #000;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      padding: 14px 32px;
-      border-radius: 100px;
+      padding: 13px 28px;
+      border-radius: 12px;
       text-decoration: none;
       transition: opacity 0.15s, transform 0.15s;
+      margin-bottom: 10px;
     }
-    .btn:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
     .platforms {
-      margin-top: 16px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-    }
-
-    .features {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 64px;
-      max-width: 560px;
-    }
-
-    .tag {
       font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 32px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin-bottom: 24px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .tag {
+      font-size: 11px;
       font-weight: 600;
-      color: rgba(255,255,255,0.35);
-      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 100px;
-      padding: 6px 14px;
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.03);
     }
 
     footer {
       position: fixed;
-      bottom: 24px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.15);
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.12);
     }
   </style>
 </head>
 <body>
 
-  <div class="logo"><span>.</span>pinn</div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 
-  <h1>AI that stays<br><em>out of sight.</em></h1>
+  <div class="card">
+    <div class="logo"><span class="logo-dot">.</span>pinn</div>
 
-  <p class="sub">press a shortcut, ask anything, disappear. no icon, no dock, no trace. works anywhere — even inside lockdown browser.</p>
+    <div class="status">
+      <span class="status-dot"></span>
+      v12 — free
+    </div>
 
-  <a class="btn" href="https://github.com/disow2026-eng/Pinn/releases/tag/v1.0.12" target="_blank">
-    download free
-  </a>
+    <h1>AI that stays<br><em>out of sight.</em></h1>
 
-  <div class="platforms">mac &amp; windows &nbsp;·&nbsp; free forever</div>
+    <p class="sub">press a shortcut, ask anything, disappear. no icon, no dock, no trace. works anywhere — even inside lockdown browser.</p>
 
-  <div class="features">
-    <span class="tag">invisible to screen recording</span>
-    <span class="tag">no account needed</span>
-    <span class="tag">screenshot + AI</span>
-    <span class="tag">lockdown browser</span>
-    <span class="tag">auto starts on login</span>
-    <span class="tag">no telemetry</span>
+    <a class="btn" href="https://github.com/disow2026-eng/Pinn/releases/tag/v1.0.12" target="_blank">
+      download free
+    </a>
+
+    <div class="platforms">mac &amp; windows</div>
+
+    <div class="divider"></div>
+
+    <div class="tags">
+      <span class="tag">invisible to screen recording</span>
+      <span class="tag">no account</span>
+      <span class="tag">screenshot + AI</span>
+      <span class="tag">lockdown browser</span>
+      <span class="tag">no telemetry</span>
+    </div>
   </div>
 
   <footer>built by Drex</footer>
