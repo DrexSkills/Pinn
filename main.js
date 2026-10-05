@@ -37,58 +37,21 @@ let win
 let selectorWin
 
 function createWindow() {
-  const fs = require('fs')
-  const os = require('os')
-  const settingsFile = require('path').join(os.homedir(), '.pinn-settings.json')
-  let onboarded = false
-  try { onboarded = JSON.parse(fs.readFileSync(settingsFile, 'utf8')).onboarded === true } catch {}
+  const { width, height } = screen.getPrimaryDisplay().bounds
 
-  let opts
-
-  if (onboarded) {
-    // Full-screen transparent overlay — window edges hit screen boundary so
-    // macOS compositor border is never visible
-    const { width, height } = screen.getPrimaryDisplay().bounds
-    opts = {
-      width, height,
-      x: 0, y: 0,
-      frame: false,
-      alwaysOnTop: true,
-      skipTaskbar: true,
-      title: '',
-      focusable: true,
-      transparent: true,
-      backgroundColor: '#00000000',
-      hasShadow: false,
-      resizable: false,
-      webPreferences: { nodeIntegration: true, contextIsolation: false }
-    }
-  } else {
-    opts = {
-      width: 340, height: 500,
-      minWidth: 280, minHeight: 460,
-      frame: false, alwaysOnTop: true, skipTaskbar: true,
-      title: '', focusable: true,
-      transparent: true, backgroundColor: '#00000000', hasShadow: true,
-      webPreferences: { nodeIntegration: true, contextIsolation: false }
-    }
-  }
-
-  win = new BrowserWindow(opts)
-
-  // Content protection: makes window BLACK in all screen capture —
-  // Zoom, Google Meet, Teams, OBS, Lockdown Browser screen share all see nothing
+  win = new BrowserWindow({
+    width, height, x: 0, y: 0,
+    frame: false, alwaysOnTop: true, skipTaskbar: true,
+    title: '', focusable: true,
+    transparent: true, backgroundColor: '#00000000',
+    hasShadow: false, resizable: false,
+    webPreferences: { nodeIntegration: true, contextIsolation: false }
+  })
   win.setContentProtection(true)
-
-  // Re-apply content protection every time window becomes visible
   win.on('show', () => { try { win.setContentProtection(true) } catch {} })
-
-  win.loadFile(onboarded ? 'app.html' : 'onboarding.html')
+  win.loadFile('app.html')
   win.setAlwaysOnTop(true, isMac ? 'screen-saver' : undefined)
-  // Full-screen overlay: pass all mouse events through by default.
-  // Renderer toggles this off only when hovering over the bubble or box.
-  if (onboarded) win.setIgnoreMouseEvents(true, { forward: true })
-
+  win.setIgnoreMouseEvents(true, { forward: true })
   if (isMac) {
     win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
     win.setWindowButtonVisibility(false)
@@ -106,18 +69,6 @@ ipcMain.on('set-ignore-mouse', (_, ignore) => {
 ipcMain.on('expand-win', () => {})
 ipcMain.on('collapse-win', () => {})
 
-ipcMain.on('finish-onboarding', () => {
-  const { width, height } = screen.getPrimaryDisplay().bounds
-  win.setResizable(false)
-  win.setMinimumSize(1, 1)
-  win.setSize(width, height)
-  win.setPosition(0, 0)
-  win.setHasShadow(false)
-  win.loadFile('app.html')
-  win.once('did-finish-load', () => {
-    win.setIgnoreMouseEvents(true, { forward: true })
-  })
-})
 
 ipcMain.on('update-hotkey', (_, newKey) => {
   const toggle = () => {

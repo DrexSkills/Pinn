@@ -48,22 +48,37 @@
         color: var(--text);
       }
 
-      /* Box background — solid dark, no backdrop-filter (causes macOS ghost layer) */
+      /* Box background — no backdrop-filter on macOS (causes ghost layer) */
       #pinn-box:not(.hidden) {
-        background: rgba(14, 14, 14, 0.97);
+        background: rgba(14, 14, 14, 0.75);
         border-radius: var(--radius);
         border: 1px solid rgba(255,255,255,0.12);
         box-shadow: 0 16px 48px rgba(0,0,0,0.6);
         overflow: hidden;
       }
 
+      /* Windows: frosted glass via backdrop-filter */
+      body.platform-win #pinn-box:not(.hidden) {
+        background: rgba(14, 14, 14, 0.55);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 0.5px rgba(255,255,255,0.06);
+      }
+
       /* ── slide panels ── */
       .slide-panel {
         position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(14, 14, 14, 0.98);
+        background: rgba(14, 14, 14, 0.75);
         z-index: 50; display: flex; flex-direction: column;
         border-radius: var(--radius);
         transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+      }
+
+      body.platform-win .slide-panel {
+        background: rgba(14, 14, 14, 0.55);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
       }
       #sessions-panel { transform: translateX(-100%); }
       #sessions-panel.open { transform: translateX(0); }
@@ -384,6 +399,13 @@
         transition: transform 0.15s ease;
         width: max-content;
       }
+      body.platform-win .bubble-pill {
+        background: rgba(10, 10, 10, 0.5);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1.5px solid rgba(255,255,255,0.2);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      }
       .bubble-pill:hover { animation: none; transform: scale(1.06); }
       .bubble-pill:active { transform: scale(0.94); }
       @keyframes bub-bounce {
@@ -629,7 +651,9 @@
       const isWin = process.platform === 'win32'
 
       if (isWin) {
-        document.documentElement.style.setProperty('--glass', 'rgba(10,10,10,0.82)')
+        document.body.classList.add('platform-win')
+        document.body.style.webkitFontSmoothing = 'antialiased'
+        document.body.style.textRendering = 'optimizeLegibility'
       }
 
       // ── Bubble ↔ Box ─────────────────────────────────────────────
