@@ -8,145 +8,183 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
-      width: 100%; height: 100%;
-    }
+    html, body { width: 100%; height: 100%; }
 
     body {
       background: #060606;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
+    /* blobs */
     .blob {
       position: fixed;
       border-radius: 50%;
       filter: blur(140px);
       pointer-events: none;
+      z-index: 0;
     }
-    .blob-1 { width: 80vw; height: 80vw; background: #22c55e; opacity: 0.2; top: -30vw; left: -30vw; }
-    .blob-2 { width: 70vw; height: 70vw; background: #166534; opacity: 0.25; bottom: -25vw; right: -25vw; }
-    .blob-3 { width: 40vw; height: 40vw; background: #15803d; opacity: 0.12; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .blob-1 { width: 80vw; height: 80vw; background: #22c55e; opacity: 0.15; top: -30vw; left: -20vw; }
+    .blob-2 { width: 60vw; height: 60vw; background: #166534; opacity: 0.2;  bottom: -20vw; right: -20vw; }
 
-    .card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(60px) saturate(200%) brightness(1.1);
-      -webkit-backdrop-filter: blur(60px) saturate(200%) brightness(1.1);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-top: 1px solid rgba(255,255,255,0.22);
-      border-radius: 28px;
-      padding: 52px 48px;
-      max-width: 520px;
-      width: calc(100% - 40px);
-      text-align: center;
-      box-shadow:
-        0 40px 100px rgba(0,0,0,0.7),
-        0 0 0 0.5px rgba(255,255,255,0.07),
-        inset 0 1px 0 rgba(255,255,255,0.1);
+    /* nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(6,6,6,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .logo {
       font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: #fff;
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .logo-dot { color: #22c55e; font-size: 22px; }
+    .logo span { color: #22c55e; }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+    .nav-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #22c55e;
       background: rgba(34,197,94,0.1);
       border: 1px solid rgba(34,197,94,0.2);
       border-radius: 100px;
       padding: 5px 14px;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #22c55e;
-      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
-    .status-dot {
-      width: 6px; height: 6px;
+    .nav-badge-dot {
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: #22c55e;
       box-shadow: 0 0 6px #22c55e;
     }
 
-    h1 {
-      font-size: clamp(30px, 5vw, 42px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      color: #fff;
-      margin-bottom: 16px;
+    /* hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
     }
-    h1 em { font-style: normal; color: #22c55e; }
 
-    p.sub {
-      font-size: 14px;
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: normal; color: #22c55e; }
+
+    .hero p {
+      font-size: clamp(15px, 2vw, 19px);
       color: rgba(255,255,255,0.4);
-      line-height: 1.65;
-      margin-bottom: 36px;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 48px;
     }
 
     .btn {
-      display: block;
+      display: inline-block;
       background: #22c55e;
       color: #000;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
-      padding: 13px 28px;
-      border-radius: 12px;
+      padding: 15px 36px;
+      border-radius: 14px;
       text-decoration: none;
       transition: opacity 0.15s, transform 0.15s;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
-    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn:hover { opacity: 0.85; transform: translateY(-2px); }
 
     .platforms {
       font-size: 12px;
       color: rgba(255,255,255,0.2);
-      margin-bottom: 32px;
     }
 
-    .divider {
-      height: 1px;
-      background: rgba(255,255,255,0.07);
-      margin-bottom: 24px;
+    /* glass section */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 24px;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-    .tag {
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.3);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 100px;
-      padding: 5px 12px;
-      background: rgba(255,255,255,0.03);
+    .glass-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
+    .glass-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .glass-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .glass-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+    }
+
+    .section-label {
       text-align: center;
       font-size: 11px;
-      color: rgba(255,255,255,0.12);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 48px;
+    }
+
+    /* footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.15);
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
   </style>
 </head>
@@ -154,36 +192,49 @@
 
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
 
-  <div class="card">
-    <div class="logo"><span class="logo-dot">.</span>pinn</div>
+  <nav>
+    <div class="logo"><span>.</span>pinn</div>
+    <div class="nav-badge"><span class="nav-badge-dot"></span> v12 — free</div>
+  </nav>
 
-    <div class="status">
-      <span class="status-dot"></span>
-      v12 — free
-    </div>
-
+  <section class="hero">
     <h1>AI that stays<br><em>out of sight.</em></h1>
+    <p>press a shortcut, ask anything, disappear. no icon, no dock, no trace — works over any app, even inside lockdown browser.</p>
+    <a class="btn" href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank">download free</a>
+    <div class="platforms">mac &amp; windows · no account needed</div>
+  </section>
 
-    <p class="sub">press a shortcut, ask anything, disappear. no icon, no dock, no trace. works anywhere — even inside lockdown browser.</p>
-
-    <a class="btn" href="https://github.com/disow2026-eng/Pinn/releases/tag/v1.0.12" target="_blank">
-      download free
-    </a>
-
-    <div class="platforms">mac &amp; windows</div>
-
-    <div class="divider"></div>
-
-    <div class="tags">
-      <span class="tag">invisible to screen recording</span>
-      <span class="tag">no account</span>
-      <span class="tag">screenshot + AI</span>
-      <span class="tag">lockdown browser</span>
-      <span class="tag">no telemetry</span>
+  <section class="section">
+    <p class="section-label">features</p>
+    <h2 class="section-title">everything stays hidden</h2>
+    <div class="glass-row">
+      <div class="glass-card">
+        <h3>invisible everywhere</h3>
+        <p>no dock icon, no taskbar, no app switcher. nobody can tell its running.</p>
+      </div>
+      <div class="glass-card">
+        <h3>screen-share safe</h3>
+        <p>invisible to zoom, teams, meet, obs and every screen recorder out there.</p>
+      </div>
+      <div class="glass-card">
+        <h3>lockdown browser</h3>
+        <p>works fully hidden inside lockdown browser. no trace, no detection.</p>
+      </div>
+      <div class="glass-card">
+        <h3>screenshot + AI</h3>
+        <p>drag to select any area of your screen and ask pinn about it instantly.</p>
+      </div>
+      <div class="glass-card">
+        <h3>chat history</h3>
+        <p>all your sessions are saved locally. pick up any conversation anytime.</p>
+      </div>
+      <div class="glass-card">
+        <h3>no account, ever</h3>
+        <p>free forever. no sign up, no tracking, nothing leaves your machine.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
   <footer>built by Drex</footer>
 
