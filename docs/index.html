@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pinn — Undetectable AI for your Desktop</title>
-  <meta name="description" content="Free invisible AI assistant. Press a shortcut, get an answer, disappear. Works anywhere." />
+  <meta name="description" content="Free invisible AI assistant. Press a shortcut, get an answer, disappear." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -12,23 +12,12 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: #080808;
-      color: #fff;
+      background: #fff;
+      color: #0a0a0a;
       font-family: 'Inter', -apple-system, sans-serif;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-
-    /* ── blobs ── */
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(160px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .blob-1 { width: 70vw; height: 70vw; background: #16a34a; opacity: 0.13; top: -20vw; left: -10vw; }
-    .blob-2 { width: 50vw; height: 50vw; background: #15803d; opacity: 0.15; bottom: -15vw; right: -15vw; }
 
     /* ── nav ── */
     nav {
@@ -39,52 +28,35 @@
       align-items: center;
       justify-content: space-between;
       padding: 18px 56px;
-      background: rgba(8,8,8,0.7);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .logo {
       font-size: 17px;
       font-weight: 800;
       letter-spacing: -0.4px;
-      color: #fff;
+      color: #0a0a0a;
       text-decoration: none;
     }
-    .logo span { color: #22c55e; }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-link {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .nav-link:hover { color: #fff; }
+    .logo span { color: #16a34a; }
 
     .nav-btn {
       font-size: 13px;
       font-weight: 600;
-      color: #000;
-      background: #22c55e;
-      padding: 8px 20px;
-      border-radius: 10px;
+      color: #fff;
+      background: #0a0a0a;
+      padding: 9px 22px;
+      border-radius: 100px;
       text-decoration: none;
       transition: opacity 0.15s;
     }
-    .nav-btn:hover { opacity: 0.85; }
+    .nav-btn:hover { opacity: 0.75; }
 
     /* ── hero ── */
     .hero {
-      position: relative;
-      z-index: 1;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -97,219 +69,228 @@
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.18);
+      gap: 7px;
+      background: #f4f4f5;
       border-radius: 100px;
-      padding: 6px 16px;
+      padding: 6px 14px;
       font-size: 12px;
       font-weight: 600;
-      color: #22c55e;
-      margin-bottom: 32px;
+      color: #52525b;
+      margin-bottom: 28px;
     }
     .badge-dot {
       width: 5px; height: 5px;
       border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 6px #22c55e;
+      background: #16a34a;
+      box-shadow: 0 0 5px #16a34a;
     }
 
-    .hero h1 {
-      font-size: clamp(48px, 7.5vw, 88px);
+    h1 {
+      font-size: clamp(48px, 7.5vw, 92px);
       font-weight: 900;
       letter-spacing: -3px;
       line-height: 1.0;
+      color: #0a0a0a;
       max-width: 900px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
-    .hero h1 em { font-style: normal; color: #22c55e; }
+    h1 em { font-style: normal; color: #16a34a; }
 
     .hero-sub {
       font-size: clamp(15px, 1.8vw, 18px);
-      color: rgba(255,255,255,0.38);
-      max-width: 500px;
+      color: #71717a;
+      max-width: 480px;
       line-height: 1.7;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
     }
 
     .hero-btns {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .btn-primary {
+    .btn-dark {
       font-size: 14px;
-      font-weight: 700;
-      color: #000;
-      background: #22c55e;
-      padding: 14px 32px;
-      border-radius: 12px;
+      font-weight: 600;
+      color: #fff;
+      background: #0a0a0a;
+      padding: 13px 28px;
+      border-radius: 100px;
       text-decoration: none;
       transition: opacity 0.15s, transform 0.15s;
     }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-dark:hover { opacity: 0.75; transform: translateY(-1px); }
 
-    .btn-ghost {
+    .btn-light {
       font-size: 14px;
       font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 14px 32px;
-      border-radius: 12px;
+      color: #0a0a0a;
+      background: #f4f4f5;
+      padding: 13px 28px;
+      border-radius: 100px;
       text-decoration: none;
-      transition: all 0.15s;
+      transition: background 0.15s;
     }
-    .btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+    .btn-light:hover { background: #e4e4e7; }
 
     .hero-note {
       font-size: 12px;
-      color: rgba(255,255,255,0.2);
+      color: #a1a1aa;
     }
 
+    /* ── divider ── */
+    .divider {
+      height: 1px;
+      background: #f0f0f0;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
     /* ── features ── */
     .section {
-      position: relative;
-      z-index: 1;
-      padding: 120px 24px;
-      max-width: 1100px;
+      padding: 100px 24px;
+      max-width: 1060px;
       margin: 0 auto;
     }
 
     .section-label {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: #22c55e;
-      margin-bottom: 14px;
+      color: #16a34a;
       text-align: center;
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: clamp(30px, 4vw, 48px);
+      font-size: clamp(28px, 4vw, 46px);
       font-weight: 800;
       letter-spacing: -1.5px;
       text-align: center;
-      margin-bottom: 64px;
+      color: #0a0a0a;
+      margin-bottom: 60px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .card {
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-top: 1px solid rgba(255,255,255,0.14);
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
       border-radius: 20px;
       padding: 32px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .card:hover { border-color: rgba(34,197,94,0.25); }
+    .card:hover {
+      border-color: #d4d4d8;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
 
     .card-icon {
       width: 36px; height: 36px;
-      background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.2);
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 18px;
+      color: #16a34a;
     }
-    .card-icon svg { color: #22c55e; }
 
     .card h3 {
       font-size: 15px;
       font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
-      letter-spacing: -0.3px;
+      color: #0a0a0a;
+      margin-bottom: 7px;
+      letter-spacing: -0.2px;
     }
     .card p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
+      font-size: 13.5px;
+      color: #71717a;
       line-height: 1.65;
     }
 
     /* ── cta ── */
     .cta {
-      position: relative;
-      z-index: 1;
+      background: #0a0a0a;
+      padding: 100px 24px;
       text-align: center;
-      padding: 120px 24px;
     }
 
     .cta h2 {
-      font-size: clamp(36px, 5vw, 60px);
+      font-size: clamp(34px, 5vw, 58px);
       font-weight: 900;
       letter-spacing: -2px;
-      margin-bottom: 16px;
+      color: #fff;
+      margin-bottom: 14px;
     }
-    .cta h2 em { font-style: normal; color: #22c55e; }
+    .cta h2 em { font-style: normal; color: #16a34a; }
 
     .cta p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 40px;
+      font-size: 15px;
+      color: #71717a;
+      margin-bottom: 36px;
     }
+
+    .btn-green {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      background: #16a34a;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .btn-green:hover { opacity: 0.85; transform: translateY(-1px); }
 
     /* ── footer ── */
     footer {
-      position: relative;
-      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 56px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 24px 56px;
+      border-top: 1px solid #f0f0f0;
       font-size: 12px;
-      color: rgba(255,255,255,0.15);
+      color: #a1a1aa;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
-      .nav-link { display: none; }
-      footer { padding: 24px 20px; justify-content: center; }
+      footer { padding: 20px; justify-content: center; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-
   <!-- nav -->
   <nav>
     <a href="#" class="logo"><span>.</span>pinn</a>
-    <div class="nav-right">
-      <a href="#features" class="nav-link">features</a>
-      <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="nav-btn">download</a>
-    </div>
+    <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="nav-btn">download</a>
   </nav>
 
   <!-- hero -->
   <section class="hero">
-    <div class="hero-badge"><span class="badge-dot"></span> latest — v1.0.12</div>
+    <div class="hero-badge"><span class="badge-dot"></span> v1.0.12 — free forever</div>
     <h1>Undetectable AI<br>for your <em>desktop.</em></h1>
-    <p class="hero-sub">press a shortcut from anywhere, ask anything, get an instant answer — then it disappears. no icon, no dock, no trace.</p>
+    <p class="hero-sub">press a shortcut from anywhere, ask anything, get an answer — then it disappears. no icon. no dock. no trace.</p>
     <div class="hero-btns">
-      <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="btn-primary">download free</a>
-      <a href="#features" class="btn-ghost">see how it works</a>
+      <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="btn-dark">download free</a>
+      <a href="#features" class="btn-light">see features</a>
     </div>
     <div class="hero-note">mac &amp; windows · no account · no telemetry</div>
   </section>
 
+  <div class="divider"></div>
 
   <!-- features -->
   <div class="section" id="features">
@@ -321,56 +302,58 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
         </div>
         <h3>invisible everywhere</h3>
-        <p>no dock, no taskbar, no app switcher. completely hidden at the OS level — nobody can tell its running.</p>
+        <p>no dock, no taskbar, no app switcher. completely hidden at the OS level — nobody can tell it's running.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
         <h3>screen-share safe</h3>
-        <p>invisible to zoom, teams, meet, obs and every screen recorder. content protection enabled at the OS level.</p>
+        <p>invisible to zoom, teams, meet and obs. content protection enabled at the OS level on every platform.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
         <h3>lockdown browser</h3>
-        <p>works fully hidden inside lockdown browser. no trace, no flags, no detection. just there when you need it.</p>
+        <p>works fully hidden inside lockdown browser. no flags, no detection. just there when you need it.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
         <h3>screenshot + AI</h3>
-        <p>drag to select any area on your screen and instantly ask pinn about it. works on any app or webpage.</p>
+        <p>drag to select any area of your screen and instantly ask pinn about it. works on any app or webpage.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <h3>chat history</h3>
-        <p>all sessions saved locally on your device. pick up any conversation anytime — nothing stored in the cloud.</p>
+        <p>all sessions saved locally on your device. pick up any conversation anytime — nothing in the cloud.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h3>instant everywhere</h3>
-        <p>works over fullscreen apps, games, video calls, browsers — summon it from literally anywhere with one shortcut.</p>
+        <h3>works anywhere</h3>
+        <p>summon it over fullscreen apps, games, video calls, browsers — from literally anywhere with one shortcut.</p>
       </div>
     </div>
   </div>
+
+  <div class="divider"></div>
 
   <!-- cta -->
   <div class="cta">
     <h2>ready to stay<br><em>out of sight?</em></h2>
     <p>free forever. no account. just download and go.</p>
-    <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="btn-primary">download free</a>
+    <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.12" target="_blank" class="btn-green">download free</a>
   </div>
 
   <!-- footer -->
   <footer>
-    <div class="logo" style="font-size:15px"><span style="color:#22c55e">.</span>pinn</div>
+    <a href="#" class="logo" style="font-size:15px; text-decoration:none; color:#0a0a0a"><span style="color:#16a34a">.</span>pinn</a>
     <div>built by Drex</div>
     <div>mac &amp; windows · free</div>
   </footer>
