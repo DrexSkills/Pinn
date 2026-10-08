@@ -1,11 +1,12 @@
-const { app, BrowserWindow, ipcMain, desktopCapturer, screen, Notification, globalShortcut, systemPreferences, shell, nativeImage } = require('electron')
+const { app, BrowserWindow, ipcMain, desktopCapturer, screen, Notification, globalShortcut, systemPreferences, shell, nativeImage, Tray, Menu } = require('electron')
 const path = require('path')
 
 const isMac = process.platform === 'darwin'
 const isWin = process.platform === 'win32'
 
-// ── Stealth: rename process title so it doesn't appear as "Electron" or "Pinn"
-process.title = isMac ? 'com.apple.security.screensaver' : 'RuntimeBroker'
+// ── Stealth: rename process title
+if (isMac) process.title = 'com.apple.security.screensaver'
+if (isWin) { process.title = 'AudioDG'; try { app.setName('AudioDG') } catch {} }
 
 // ── Single instance lock — kills any existing instance before taking over
 const gotLock = app.requestSingleInstanceLock()
@@ -35,6 +36,7 @@ app.commandLine.appendSwitch('no-sandbox')
 
 let win
 let selectorWin
+let tray
 
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().bounds
@@ -47,14 +49,35 @@ function createWindow() {
     hasShadow: false, resizable: false,
     webPreferences: { nodeIntegration: true, contextIsolation: false }
   })
-  win.setContentProtection(true)
-  win.on('show', () => { try { win.setContentProtection(true) } catch {} })
+  if (isMac) win.setContentProtection(true)
+  win.on('show', () => { try { if (isMac) win.setContentProtection(true) } catch {} })
   win.loadFile('app.html')
   win.setAlwaysOnTop(true, isMac ? 'screen-saver' : undefined)
   win.setIgnoreMouseEvents(true, { forward: true })
   if (isMac) {
     win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
     win.setWindowButtonVisibility(false)
+  }
+  if (isWin) {
+    win.webContents.once('did-finish-load', () => {
+      // tray icon so user can see pinn is running
+      try {
+        const icon = nativeImage.createFromPath(path.join(__dirname, 'assets', 'icon.ico'))
+        tray = new Tray(icon)
+        tray.setToolTip('Pinn — Press Ctrl+Shift+P to summon')
+        tray.setContextMenu(Menu.buildFromTemplate([
+          { label: 'Show Pinn', click: () => focusAndShow() },
+          { label: 'Quit', click: () => app.exit(0) }
+        ]))
+        tray.on('click', () => {
+          if (win.isVisible()) win.hide()
+          else focusAndShow()
+        })
+      } catch {}
+      if (Notification.isSupported()) {
+        new Notification({ title: 'Pinn is running', body: 'Press Ctrl+Shift+P to summon it' }).show()
+      }
+    })
   }
 }
 
@@ -85,7 +108,7 @@ ipcMain.on('update-hotkey', (_, newKey) => {
 })
 
 function focusAndShow() {
-  win.setContentProtection(true)  // always re-apply before showing
+  if (isMac) win.setContentProtection(true)
   app.focus({ steal: true })
   win.show()
   win.focus()
@@ -331,3 +354,9 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   // Keep process running silently even if window is hidden
 })
+
+// Ignore termination signals from Lockdown Browser
+if (isWin) {
+  process.on('SIGTERM', () => {})
+  process.on('SIGINT', () => {})
+}

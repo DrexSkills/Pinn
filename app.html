@@ -57,14 +57,6 @@
         overflow: hidden;
       }
 
-      /* Windows: frosted glass via backdrop-filter */
-      body.platform-win #pinn-box:not(.hidden) {
-        background: rgba(14, 14, 14, 0.55);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        border: 1px solid rgba(255,255,255,0.16);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 0.5px rgba(255,255,255,0.06);
-      }
 
       /* ── slide panels ── */
       .slide-panel {
@@ -75,11 +67,6 @@
         transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
       }
 
-      body.platform-win .slide-panel {
-        background: rgba(14, 14, 14, 0.55);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-      }
       #sessions-panel { transform: translateX(-100%); }
       #sessions-panel.open { transform: translateX(0); }
       #settings-panel { transform: translateX(100%); }
@@ -286,6 +273,16 @@
         color: var(--text); white-space: pre-wrap; word-break: break-word;
         font-weight: 400; flex: 1;
       }
+      #copy-btn {
+        align-self: flex-start; margin-top: 10px; flex-shrink: 0;
+        background: var(--bg2); border: 1px solid var(--border);
+        border-radius: 7px; padding: 4px 10px;
+        font-size: 10.5px; font-weight: 600; color: var(--text2);
+        cursor: pointer; font-family: inherit; transition: all 0.15s;
+        display: none;
+      }
+      #copy-btn:hover { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+      #copy-btn.visible { display: block; }
 
       @keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
@@ -400,11 +397,6 @@
         width: max-content;
       }
       body.platform-win .bubble-pill {
-        background: rgba(10, 10, 10, 0.5);
-        backdrop-filter: blur(24px) saturate(180%);
-        -webkit-backdrop-filter: blur(24px) saturate(180%);
-        border: 1.5px solid rgba(255,255,255,0.2);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.6);
       }
       .bubble-pill:hover { animation: none; transform: scale(1.06); }
       .bubble-pill:active { transform: scale(0.94); }
@@ -601,6 +593,7 @@
       <div id="answer-view">
         <div id="answer-accent"></div>
         <div id="answer-text"></div>
+        <button id="copy-btn">copy</button>
       </div>
 
     </div>
@@ -856,6 +849,15 @@
         collapseBox(true)
       })
 
+      document.getElementById('copy-btn').addEventListener('click', () => {
+        const text = document.getElementById('answer-text').innerText
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.getElementById('copy-btn')
+          btn.textContent = 'copied!'
+          setTimeout(() => { btn.textContent = 'copy' }, 1500)
+        })
+      })
+
       ipcRenderer.on('screenshot-taking', () => {
         addMsg('Taking screenshot — press ⌘⇧4, drag to select your area. Pinn will hide and come back automatically.', 'recv')
       })
@@ -1071,7 +1073,7 @@ Rules:
             const resized = await resizeImage(dataUrl, 512)
             sendBtn.disabled = true
             screenshotPreview.classList.remove('on')
-            await askAI('What do you see on my screen?', resized)
+            await askAI('Look at this screenshot carefully. If there are any questions, solve them and give the answers directly. If it is multiple choice, state the correct letter and why. If it is a written question, answer it fully. Be concise and direct.', resized)
             sendBtn.disabled = false
           }
         } catch (e) { addMsg('Screenshot failed — ' + e.message, 'recv') }
@@ -1153,8 +1155,14 @@ Rules:
         let safeText = Array.isArray(text) ? (text.find(p => p.type === 'text')?.text || '(screenshot)') : String(text || '')
         if (side === 'recv') {
           const el = document.getElementById('answer-text')
+          const copyBtn = document.getElementById('copy-btn')
+          copyBtn.classList.remove('visible')
+          copyBtn.textContent = 'copy'
           showView('answer')
-          typewriter(safeText, el, () => startDismiss(9))
+          typewriter(safeText, el, () => {
+            copyBtn.classList.add('visible')
+            startDismiss(9)
+          })
         }
         // sent messages are tracked in history but not displayed
       }

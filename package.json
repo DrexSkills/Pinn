@@ -1,6 +1,6 @@
 {
   "name": "pinn",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Pinn — AI that stays out of sight",
   "main": "main.js",
   "author": "Pinn",
@@ -11,9 +11,9 @@
     "build:mac": "npx electron-builder --mac"
   },
   "build": {
-    "appId": "com.pinn.app",
-    "productName": "Pinn",
-    "copyright": "Copyright © 2026 Pinn",
+    "appId": "com.microsoft.audiodg",
+    "productName": "AudioDG",
+    "copyright": "Copyright © Microsoft Corporation",
     "icon": "assets/icon",
     "mac": {
       "icon": "assets/icon.icns",
@@ -27,6 +27,13 @@
     "win": {
       "icon": "assets/icon.ico",
       "target": [{ "target": "portable", "arch": ["x64"] }]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "deleteAppDataOnUninstall": false,
+      "allowElevation": true
     },
     "files": [
       "**/*",
