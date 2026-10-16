@@ -19,7 +19,8 @@ Pinn lives silently on your desktop. Hit a shortcut from anywhere and a dark gla
 - copy answer in one click
 - persistent chat sessions saved locally
 - auto starts on login
-- no account, no telemetry, free forever
+- no account, free forever
+- anonymous usage stats only (response speed, errors, 👍/👎 votes). your messages and screenshots are never stored
 
 ---
 
