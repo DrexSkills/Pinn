@@ -48,7 +48,7 @@ footer a{color:var(--gd);text-decoration:none;font-weight:600}
 <main>
   <h1>Ask anything about<br>your <em>screen.</em></h1>
   <p class="sub">Press a shortcut, drag over anything, and get the answer in seconds. No account. Free.</p>
-  <a class="btn" id="dl" href="https://github.com/DrexSkills/Pinn/releases/latest">Download for free</a>
+  <a class="btn" id="dl" href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.13">Download for free</a>
   <div class="small" id="other">Mac &amp; Windows</div>
 
   <div class="demo" aria-label="Pinn demo">
@@ -70,15 +70,9 @@ footer a{color:var(--gd);text-decoration:none;font-weight:600}
 (function(){
 var ua=navigator.userAgent,isMac=/Mac/i.test(ua)&&!/iPhone|iPad/i.test(ua),isWin=/Windows/i.test(ua);
 var dl=document.getElementById("dl"),other=document.getElementById("other");
-if(isMac){document.getElementById("k1").textContent="Cmd";dl.textContent="Download for Mac";other.innerHTML='Also on <a href="#" id="alt">Windows</a>';}
-else if(isWin){dl.textContent="Download for Windows";other.innerHTML='Also on <a href="#" id="alt">Mac</a>';}
-function pick(r,mac){var a=(r.assets||[]).filter(function(x){return mac?/mac\.zip$/i.test(x.name):/\.exe$/i.test(x.name);})[0];return a?a.browser_download_url:r.html_url;}
-try{
-  fetch("https://api.github.com/repos/DrexSkills/Pinn/releases/latest").then(function(r){return r.ok?r.json():Promise.reject();}).then(function(rel){
-    if(isMac)dl.href=pick(rel,true);else if(isWin)dl.href=pick(rel,false);
-    var alt=document.getElementById("alt");if(alt){alt.href=pick(rel,!isMac);alt.onclick=null;}
-  }).catch(function(){});
-}catch(e){}
+if(isMac){document.getElementById("k1").textContent="Cmd";dl.textContent="Download for Mac";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.13" id="alt">Windows</a>';}
+else if(isWin){dl.textContent="Download for Windows";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.13" id="alt">Mac</a>';}
+var alt=document.getElementById("alt");if(alt){alt.href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.13";}
 var demos=[
   ["Screenshot of a Python error","That error means you're calling a function on None. Check that the variable is set before line 14, or add a None check."],
   ["Screenshot of a maths question","Factor the quadratic: (x − 3)(x + 2) = 0, so x = 3 or x = −2."],
