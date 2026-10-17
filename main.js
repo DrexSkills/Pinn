@@ -47,11 +47,15 @@ function createWindow() {
     title: '', focusable: true,
     transparent: true, backgroundColor: '#00000000',
     hasShadow: false, resizable: false,
+    show: false, // prevent grey flash — show only after HTML is ready
+    ...(isMac ? { type: 'panel' } : {}), // macOS: panel type handles transparency correctly
     webPreferences: { nodeIntegration: true, contextIsolation: false }
   })
   if (isMac) win.setContentProtection(true)
   win.on('show', () => { try { if (isMac) win.setContentProtection(true) } catch {} })
   win.loadFile('app.html')
+  // Show only after renderer is ready so window never flashes grey
+  win.webContents.once('did-finish-load', () => { win.show() })
 
   // When Lockdown Browser kills the renderer process, silently reload instead of showing error
   win.webContents.on('render-process-gone', (_, details) => {
