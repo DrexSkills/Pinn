@@ -34,27 +34,23 @@ jobs:
       - name: Upload installer as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Pinn-12-Windows
+          name: Pinn-13-Windows
           path: dist/*.exe
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.12
-          name: Pinn 12 — Windows
+          tag_name: v1.0.13
+          name: Pinn 1.0.13 — Windows
           body: |
-            ## Pinn 12 for Windows 11
+            ## Pinn 1.0.13 for Windows
 
-            **Install:** Run the `.exe` installer, Pinn starts automatically.
+            **Install:** Run the `.exe`, Pinn starts automatically.
 
             **Hotkey:** `Ctrl+Shift+P` to show/hide.
 
-            ### What's new in Pinn 12
-            - Bouncing bubble UI — click to expand full chat box
-            - Resizable box (drag any edge or corner)
-            - AI double-checks every answer before showing it
-            - Draggable bubble — move it anywhere on screen
-            - Content protection (invisible in screen share/recording)
+            ### What's new in 1.0.13
+            - Fixed: no more "JavaScript killed" error when running inside Lockdown Browser
           files: dist/*.exe
           draft: false
           prerelease: false
