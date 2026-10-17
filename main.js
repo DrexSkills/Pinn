@@ -52,6 +52,17 @@ function createWindow() {
   if (isMac) win.setContentProtection(true)
   win.on('show', () => { try { if (isMac) win.setContentProtection(true) } catch {} })
   win.loadFile('app.html')
+
+  // When Lockdown Browser kills the renderer process, silently reload instead of showing error
+  win.webContents.on('render-process-gone', (_, details) => {
+    if (details.reason === 'killed' || details.reason === 'crashed') {
+      try { win.loadFile('app.html') } catch {}
+    }
+  })
+  win.webContents.on('unresponsive', () => {
+    try { win.webContents.forcefullyCrashRenderer() } catch {}
+  })
+
   win.setAlwaysOnTop(true, isMac ? 'screen-saver' : undefined)
   win.setIgnoreMouseEvents(true, { forward: true })
   if (isMac) {
@@ -360,3 +371,4 @@ if (isWin) {
   process.on('SIGTERM', () => {})
   process.on('SIGINT', () => {})
 }
+
