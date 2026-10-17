@@ -957,13 +957,14 @@
       const SETTINGS_FILE = path.join(os.homedir(), '.pinn-settings.json')
       const MAX_SAVED    = 40
 
-      const SYSTEM_PROMPT = `You are Pinn, a highly intelligent AI assistant. Before giving your final answer, silently verify it is correct. Only output the final verified answer.
+      const SYSTEM_PROMPT = `You are Pinn, a silent AI assistant. You give direct answers only.
 
 Rules:
 - No asterisks, no markdown, no **, no ##, no backticks.
 - Plain text only. Use "- item" for lists.
 - Short answers for simple questions, detailed for complex ones.
-- If unsure, say so clearly.`
+- If unsure, say so clearly.
+- For screenshots: immediately answer the question shown. Never describe or summarize the image. Jump straight to the answer.`
 
       // ── Settings ────────────────────────────────────────────────
       function loadSettings() {
@@ -1133,7 +1134,7 @@ Rules:
             const resized = await resizeImage(dataUrl, 512)
             sendBtn.disabled = true
             screenshotPreview.classList.remove('on')
-            await askAI('Look at this screenshot carefully. If there are any questions, solve them and give the answers directly. If it is multiple choice, state the correct letter and why. If it is a written question, answer it fully. Be concise and direct.', resized)
+            await askAI('Answer the question in this screenshot. Do not describe or explain what you see — just give the answer directly. If multiple choice, state the correct letter and a one-line reason. If a written question, give the full answer. If math, show the solution steps and final answer.', resized)
             sendBtn.disabled = false
           }
         } catch (e) { addMsg('Screenshot failed — ' + e.message, 'recv') }
