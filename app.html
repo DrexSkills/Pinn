@@ -964,7 +964,7 @@ Rules:
 - Plain text only. Use "- item" for lists.
 - Short answers for simple questions, detailed for complex ones.
 - If unsure, say so clearly.
-- For screenshots: immediately answer the question shown. Never describe or summarize the image. Jump straight to the answer.`
+- For screenshots: read the screen and immediately help. Figure out what is needed — if it is a question or test, answer it; if it is code, explain or fix it; if it is an error, solve it; if it is a document, spreadsheet, or work task, assist with it; if it is something else, just help. Never describe what you see. Never ask what the user wants. Never say "I see" or "I notice". Just help.`
 
       // ── Settings ────────────────────────────────────────────────
       function loadSettings() {
@@ -1134,7 +1134,7 @@ Rules:
             const resized = await resizeImage(dataUrl, 512)
             sendBtn.disabled = true
             screenshotPreview.classList.remove('on')
-            await askAI('Answer the question in this screenshot. Do not describe or explain what you see — just give the answer directly. If multiple choice, state the correct letter and a one-line reason. If a written question, give the full answer. If math, show the solution steps and final answer.', resized)
+            await askAI('', resized)
             sendBtn.disabled = false
           }
         } catch (e) { addMsg('Screenshot failed — ' + e.message, 'recv') }
@@ -1172,7 +1172,7 @@ Rules:
           reader.onload = async ev => {
             try {
               const resized = await resizeImage(ev.target.result, 512)
-              await askAI('Analyze this image and describe what you see.', resized)
+              await askAI('', resized)
             } catch (err) { addMsg('Could not read image: ' + err.message, 'recv') }
             finally { sendBtn.disabled = false }
           }
@@ -1316,7 +1316,7 @@ Rules:
       async function askAI(userMsg, screenshot = null) {
         if (screenshot) lastScreenshot = screenshot
         const userContent = screenshot
-          ? [{ type: 'image_url', image_url: { url: screenshot } }, { type: 'text', text: userMsg || 'What do you see on my screen?' }]
+          ? [{ type: 'image_url', image_url: { url: screenshot } }, { type: 'text', text: userMsg || 'Help.' }]
           : userMsg
         history.push({ role: 'user', content: userContent })
         typing.classList.add('on')
