@@ -27,8 +27,8 @@ Pinn lives silently on your desktop. Hit a shortcut from anywhere and a dark gla
 
 | platform | file |
 |---|---|
-| macOS (Apple Silicon + Intel) | [Pinn-1.0.12-universal-mac.zip](https://github.com/DrexSkills/Pinn/releases/download/v1.0.12/Pinn-1.0.12-universal-mac.zip) |
-| Windows 10/11 | [Pinn-1.0.12-Windows.exe](https://github.com/DrexSkills/Pinn/releases/download/v1.0.12/Pinn-1.0.12-Windows.exe) |
+| macOS (Apple Silicon + Intel) | [Pinn-1.0.14-universal-mac.zip](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-1.0.14-universal-mac.zip) |
+| Windows 10/11 | [Pinn-1.0.14-Windows.exe](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-1.0.14-Windows.exe) |
 
 ---
 
@@ -102,6 +102,7 @@ requires Node.js and npm.
 
 | version | what changed |
 |---|---|
+| v1.0.14 | Pinn Version 14 |
 | v1.0.12 | removed onboarding, dark glass UI, tray icon on Windows, copy answer button, lockdown browser support |
 | v1.0.9 | screenshot + AI, sessions, settings panel |
 | v1.0.6 | hotkey customisation, theme switcher |
