@@ -1,8 +1,10 @@
 # .pinn
 
-**Invisible AI for your desktop. Press a shortcut, get an answer, disappear.**
+**Why go to ChatGPT and copy-paste when you can just take a screenshot?**
 
-No icon. No dock. No taskbar. No trace. Works over any app — video calls, games, fullscreen, even inside Lockdown Browser. Nobody knows it's there.
+Pinn is better. Going to ChatGPT or Claude means switching apps, copying text, pasting it in, waiting, copying the answer back. Too much work. With Pinn you just hit a shortcut, drag over anything on your screen, and the answer is right there. No switching, no copy-pasting, no back and forth. Boom — problem solved.
+
+Lives silently on your desktop. No icon, no dock, no taskbar, no trace. Works over any app — video calls, games, fullscreen, even inside Lockdown Browser. Nobody knows it's there.
 
 → **[pinn.homes](https://pinn.homes)**
 
@@ -10,12 +12,12 @@ No icon. No dock. No taskbar. No trace. Works over any app — video calls, game
 
 ## what it does
 
-Pinn lives silently on your desktop. Hit a shortcut from anywhere and a dark glass chat window appears — ask anything, get an instant AI answer, then dismiss it. It vanishes completely. No screen recorder can capture it. No one on your Zoom call can see it.
+Pinn sits invisible on your desktop. Hit a shortcut from anywhere and a dark glass chat window appears — ask anything or take a screenshot of anything on your screen and get an instant AI answer. Then dismiss it. It vanishes completely. No screen recorder can capture it. No one on your Zoom call can see it.
 
+- screenshot anything on your screen — Pinn reads it and helps instantly
 - runs hidden — no dock icon, no taskbar, no app switcher
 - invisible to Zoom, Teams, Meet, OBS and every screen recorder
 - works inside Lockdown Browser — fully hidden, no detection
-- screenshot mode — drag select any part of your screen, ask AI about it
 - copy answer in one click
 - persistent chat sessions saved locally
 - auto starts on login
@@ -27,8 +29,8 @@ Pinn lives silently on your desktop. Hit a shortcut from anywhere and a dark gla
 
 | platform | file |
 |---|---|
-| macOS (Apple Silicon + Intel) | [Pinn-1.0.14-universal-mac.zip](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-1.0.14-universal-mac.zip) |
-| Windows 10/11 | [Pinn-1.0.14-Windows.exe](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-1.0.14-Windows.exe) |
+| macOS (Apple Silicon + Intel) | [Pinn-14-universal-mac.zip](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-universal-mac.zip) |
+| Windows 10/11 | [Pinn-14-Windows.exe](https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-Windows.exe) |
 
 ---
 
