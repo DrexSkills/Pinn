@@ -72,9 +72,9 @@ footer a{color:var(--gd);text-decoration:none;font-weight:600}
 (function(){
 var ua=navigator.userAgent,isMac=/Mac/i.test(ua)&&!/iPhone|iPad/i.test(ua),isWin=/Windows/i.test(ua);
 var dl=document.getElementById("dl"),other=document.getElementById("other");
-if(isMac){document.getElementById("k1").textContent="Cmd";dl.textContent="Download for Mac";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.14" id="alt">Windows</a>';}
-else if(isWin){dl.textContent="Download for Windows";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.14" id="alt">Mac</a>';}
-var alt=document.getElementById("alt");if(alt){alt.href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.14";}
+if(isMac){document.getElementById("k1").textContent="Cmd";dl.href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-universal-mac.zip";dl.textContent="Download for Mac";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-Windows.exe" id="alt">Windows</a>';}
+else if(isWin){dl.href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-Windows.exe";dl.textContent="Download for Windows";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-universal-mac.zip" id="alt">Mac</a>';}
+var alt=document.getElementById("alt");
 var demos=[
   ["Screenshot of a Python error","That error means you're calling a function on None. Check that the variable is set before line 14, or add a None check."],
   ["Screenshot of a maths question","Factor the quadratic: (x − 3)(x + 2) = 0, so x = 3 or x = −2."],
