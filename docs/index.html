@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#22c55e">
 
 <!-- Primary SEO -->
-<meta name="description" content="Pinn is a free invisible AI assistant for Mac and Windows. Press a shortcut, screenshot anything on your screen, and get an instant AI answer. No switching apps. No copy-pasting. Just results.">
+<meta name="description" content="Pinn is an invisible AI assistant for Mac and Windows, coming soon. Join the waitlist for early access. Press a shortcut, screenshot anything on your screen, and get an instant AI answer. No switching apps. No copy-pasting. Just results.">
 <meta name="keywords" content="pinn, pinn AI, pinn.homes, invisible AI, hidden AI desktop, AI screenshot tool, desktop AI assistant, AI overlay, screen AI, silent AI, AI for Mac, AI for Windows, free AI desktop app, AI study tool, AI cheat sheet, screenshot AI answers, AI without switching apps, instant AI answers, AI productivity tool, hidden AI assistant, AI that stays hidden, AI exam help, AI homework help, screen reader AI, desktop AI chat, AI shortcut tool, Groq AI, fast AI, AI anywhere, AI on desktop, AI in background, no account AI, free AI tool, AI for students, AI for work, AI screen capture, AI screen overlay, Lockdown Browser AI, AI invisible to Zoom, AI invisible to screen recorder, AI screen assistant, ask AI about screen, AI vision tool, AI on any app, pinn app, pinn download, pinn mac, pinn windows">
 <meta name="author" content="Drex">
 <meta name="robots" content="index, follow">
@@ -23,7 +23,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pinn.homes">
 <meta property="og:title" content="Pinn — Invisible AI for your desktop">
-<meta property="og:description" content="Why copy-paste into ChatGPT when you can just take a screenshot? Pinn lives silently on your desktop. Hit a shortcut, screenshot anything, get an instant AI answer. Free for Mac and Windows.">
+<meta property="og:description" content="Why copy-paste into ChatGPT when you can just take a screenshot? Pinn lives silently on your desktop. Hit a shortcut, screenshot anything, get an instant AI answer. Coming soon. Join the waitlist.">
 <meta property="og:site_name" content="Pinn">
 <meta property="og:locale" content="en_US">
 
@@ -31,7 +31,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@pinn_startup">
 <meta name="twitter:title" content="Pinn — Invisible AI for your desktop">
-<meta name="twitter:description" content="Why copy-paste into ChatGPT when you can just take a screenshot? Pinn lives silently on your desktop. Hit a shortcut, screenshot anything, get an instant AI answer. Free.">
+<meta name="twitter:description" content="Why copy-paste into ChatGPT when you can just take a screenshot? Pinn lives silently on your desktop. Hit a shortcut, screenshot anything, get an instant AI answer. Join the waitlist.">
 <meta name="twitter:creator" content="@pinn_startup">
 
 <!-- App / Mobile -->
@@ -76,6 +76,14 @@ kbd{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding
 .points{margin-top:40px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));width:100%}
 .pt{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--card);font-size:.9rem;color:var(--muted);line-height:1.45;box-shadow:var(--shadow)}
 .pt b{display:block;color:var(--text);margin-bottom:4px;font-size:.98rem}
+.soon{margin-bottom:14px;display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gd);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.join{display:flex;gap:8px;width:100%;max-width:460px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px;box-shadow:var(--shadow)}
+.join input{flex:1;min-width:0;border:0;background:transparent;color:var(--text);font:inherit;font-size:1rem;padding:0 16px;outline:none}
+.join .btn{border:0;cursor:pointer;font:inherit;font-weight:700;font-size:1rem;padding:14px 22px;white-space:nowrap}
+.join .btn:disabled{opacity:.7;cursor:default;transform:none}
+.small.err{color:#dc2626}.small.ok{color:var(--text);font-size:1rem}.small.ok b{color:var(--g)}
+.bottom{margin-top:56px}.bottom h2{font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:-.02em}.bottom .sub{margin:10px auto 22px}
+@media(max-width:420px){.join{flex-direction:column;border-radius:18px}.join input{padding:12px 14px}}
 .install{margin-top:34px;font-size:.82rem;color:var(--muted);max-width:520px;line-height:1.6}
 .install b{color:var(--text)}
 footer{margin:auto 0 0;padding:34px 20px;font-size:.78rem;color:var(--muted);line-height:1.7}
@@ -87,11 +95,13 @@ footer a{color:var(--gd);text-decoration:none;font-weight:600}
 <nav><div class="logo">Pinn<span>.homes</span></div><a href="https://instagram.com/pinn_startup" target="_blank" rel="noopener">@pinn_startup</a></nav>
 <main>
   <h1>Ask anything about<br>your <em>screen.</em></h1>
-  <p class="sub">Press a shortcut, drag over anything, and get the answer in seconds. No account. Free.</p>
-  <a class="btn" id="dl" href="https://github.com/DrexSkills/Pinn/releases/tag/v1.0.14">Download for free</a>
-  <div class="small" id="other">Mac &amp; Windows</div>
-  <div class="beta">Early version: it might be a little buggy, but it still works.</div>
-
+  <p class="sub">Press a shortcut, drag over anything, and get the answer in seconds. Launching soon.</p>
+  <div class="soon">Coming soon · Mac &amp; Windows</div>
+  <form class="join" id="join" novalidate>
+    <input type="email" id="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email">
+    <button class="btn" id="go" type="submit">Get early access</button>
+  </form>
+  <div class="small" id="msg">Sign up and we’ll let you in early. No spam, ever.</div>
   <div class="demo" aria-label="Pinn demo">
     <div class="keys"><kbd id="k1">Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd><span>&nbsp;→ ask anything</span></div>
     <div class="q" id="q"></div>
@@ -104,16 +114,30 @@ footer a{color:var(--gd);text-decoration:none;font-weight:600}
     <div class="pt"><b>Private</b>No account, no sign-up. Your chats are saved only on your own device.</div>
   </div>
 
-  <p class="install"><b>First time opening it?</b> Mac: right-click the app → Open → Open. Windows: if SmartScreen appears, click More info → Run anyway. Pinn is a new indie app and isn't code-signed yet.</p>
+  <div class="bottom">
+    <h2>Be one of the first.</h2>
+    <p class="sub">Early signups get access before everyone else.</p>
+    <a class="btn" href="#join" onclick="document.getElementById('email').focus();return false;">Join the waitlist</a>
+  </div>
 </main>
 <footer><b>Pinn.homes</b><br>Built by Drex, 18, from his bedroom. Follow the journey on <a href="https://instagram.com/pinn_startup" target="_blank" rel="noopener">@pinn_startup</a><br>Use Pinn responsibly: follow your school's and workplace's rules.</footer>
 <script>
 (function(){
 var ua=navigator.userAgent,isMac=/Mac/i.test(ua)&&!/iPhone|iPad/i.test(ua),isWin=/Windows/i.test(ua);
-var dl=document.getElementById("dl"),other=document.getElementById("other");
-if(isMac){document.getElementById("k1").textContent="Cmd";dl.href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-universal-mac.zip";dl.textContent="Download for Mac";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-Windows.exe" id="alt">Windows</a>';}
-else if(isWin){dl.href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-Windows.exe";dl.textContent="Download for Windows";other.innerHTML='Also on <a href="https://github.com/DrexSkills/Pinn/releases/download/v1.0.14/Pinn-14-universal-mac.zip" id="alt">Mac</a>';}
-var alt=document.getElementById("alt");
+if(isMac)document.getElementById("k1").textContent="Cmd";
+var SB="https://ihbblnbqjzdewiopqmxd.supabase.co",KEY="sb_publishable_vqKKGrWuY7C6H3DfyoTPVQ_cGqBlLjS";
+var form=document.getElementById("join"),em=document.getElementById("email"),go=document.getElementById("go"),msg=document.getElementById("msg");
+form.addEventListener("submit",function(ev){
+  ev.preventDefault();var v=em.value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){msg.textContent="That email doesn’t look right.";msg.className="small err";em.focus();return;}
+  go.disabled=true;go.textContent="Joining…";
+  fetch(SB+"/rest/v1/rpc/pinn_join",{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY},
+    body:JSON.stringify({p_email:v,p_platform:isMac?"mac":isWin?"windows":"other",p_referrer:document.referrer||null})})
+  .then(function(r){if(!r.ok)throw 0;return r.json();})
+  .then(function(d){form.style.display="none";msg.className="small ok";
+    msg.innerHTML=d.new?"You’re in! You’re <b>#"+d.position+"</b> on the list. We’ll email you when it’s your turn.":"You’re already on the list (#"+d.position+"). We’ll be in touch.";})
+  .catch(function(){go.disabled=false;go.textContent="Get early access";msg.className="small err";msg.textContent="Something went wrong. Try again in a sec.";});
+});
 var demos=[
   ["Screenshot of a Python error","That error means you're calling a function on None. Check that the variable is set before line 14, or add a None check."],
   ["Screenshot of a maths question","Factor the quadratic: (x − 3)(x + 2) = 0, so x = 3 or x = −2."],
