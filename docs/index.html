@@ -141,7 +141,7 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .cursor.down svg{transform:scale(.85)}
 
 /* Pinn panel (matches the app) */
-.note{position:absolute;z-index:4;width:min(310px,90%);background:#2A2D32;color:#F2F3F5;border:1px solid rgba(255,255,255,.08);border-radius:14px;
+.note{position:absolute;z-index:4;width:min(310px,90%);background:rgba(38,41,47,.62);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);color:#F2F3F5;border:1px solid rgba(255,255,255,.14);border-radius:14px;
   box-shadow:0 26px 50px -16px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.25);font-size:.92rem;line-height:1.45;overflow:hidden;transform-origin:50% 0}
 .note .ph{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid rgba(255,255,255,.07)}
 .note .ph b{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:5px}
@@ -150,16 +150,16 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .note .ph .ctl{display:flex;gap:9px;align-items:center}
 .note .ph .ctl span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25)}
 .note .pm{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
-.note .chip{align-self:flex-end;max-width:82%;display:flex;align-items:center;gap:8px;background:#3A3E45;border-radius:10px 10px 3px 10px;padding:6px 9px 6px 6px;font-size:.78rem;color:#C9CDD4}
+.note .chip{align-self:flex-end;max-width:82%;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border-radius:10px 10px 3px 10px;padding:6px 9px 6px 6px;font-size:.78rem;color:#C9CDD4}
 .note .chip span{flex:0 0 auto;width:34px;height:24px;border-radius:4px;background:#F4F6F9;position:relative;overflow:hidden}
 .note .chip span::before{content:"";position:absolute;left:4px;right:6px;top:7px;height:2px;background:#9AA3B2;box-shadow:0 5px 0 #C93636,0 10px 0 #9AA3B2}
 .note .chip em{font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.note .txt{font-weight:500;min-height:2.9em}
+.note .txt{font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,.35);min-height:2.9em}
 .note .txt::after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#3DDC7A;animation:blink 1s steps(1) infinite}
 .note.done .txt::after{display:none}
 .note .pf{display:flex;gap:8px;align-items:center;padding:10px 12px;border-top:1px solid rgba(255,255,255,.07)}
 .note .pf .cam{width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;flex:0 0 auto}
-.note .pf .ask{flex:1;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;padding:0 10px;color:#8C929C;font-size:.82rem;min-width:0}
+.note .pf .ask{flex:1;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.18);display:flex;align-items:center;padding:0 10px;color:#A7ADB6;font-size:.82rem;min-width:0}
 .note .pf .send{width:32px;height:32px;border-radius:9px;background:#2FBF64;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 0 14px rgba(47,191,100,.45)}
 @keyframes blink{50%{opacity:0}}
 .note.in{animation:pop .42s cubic-bezier(.25,1.35,.5,1) both}
@@ -176,7 +176,7 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .try{margin-top:10px;font-size:.88rem;color:var(--muted);padding-left:8px}
 
 /* success note in signup */
-.signup .note{position:relative;width:auto;max-width:400px;margin-top:4px;font-size:1rem}
+.signup .note{background:rgba(36,39,44,.88);position:relative;width:auto;max-width:400px;margin-top:4px;font-size:1rem}
 .signup .note .txt b{font-size:1.35rem;letter-spacing:-.02em;color:#3DDC7A}
 
 footer{margin-top:auto;padding:40px 24px 30px;max-width:1140px;width:100%;margin-left:auto;margin-right:auto;font-size:.88rem;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -270,16 +270,16 @@ form.addEventListener("submit",function(ev){
 /* demo */
 var scenes=[
   {t:"app.py",c:"code",lines:[
-    ["Traceback (most recent call last):"],
-    ["  File \"app.py\", line 14, in <module>"],
+    ["Traceback (most recent call last):","This is Python’s error report. The real problem is on the last line: cart is None when line 14 runs."],
+    ["  File \"app.py\", line 14, in <module>","The crash happened in app.py on line 14, in the main part of the script."],
     ["    total = cart.items.count()","Line 14 calls .items on cart, but cart is empty (None) at that point."],
     ["AttributeError: 'NoneType' object has no attribute 'items'","cart is None on line 14. Load the cart before you use it, or add if cart: first."]],target:3},
   {t:"Worksheet 4.pdf",c:"sheet",lines:[
-    ["Question 6"],["Solve for x."],
+    ["Question 6","This is question 6: solve x² − x − 6 = 0. The answer is x = 3 or x = −2."],["Solve for x.","Find the values of x that make the equation true. Here that’s x = 3 or x = −2."],
     ["x² − x − 6 = 0","Factor it: (x − 3)(x + 2) = 0, so x = 3 or x = −2.","big"],
     ["Show your working.","Write the factored form, then set each bracket to zero."]],target:2},
   {t:"Inbox: Re: launch plan",c:"mail",lines:[
-    ["From: Maya Chen","","meta"],["Subject: Re: launch plan","","meta"],
+    ["From: Maya Chen","This email is from Maya Chen. She’s moving the review to Friday at 2 PM.","meta"],["Subject: Re: launch plan","It’s a reply about the launch plan: the review moved to Friday at 2 PM and she wants your slides Thursday night.","meta"],
     ["Hey! Quick change: we’re moving the review to Friday at 2 PM instead of Thursday. Could you send your slides by Thursday night so I can look them over first? Thanks!","Review moved to Friday at 2 PM. Send Maya your slides by Thursday night."]],target:2}
 ];
 var desk=document.getElementById("desk"),wb=document.getElementById("wbody"),wt=document.getElementById("wtitle"),
@@ -295,7 +295,9 @@ function box(x1,y1,x2,y2){var l=Math.min(x1,x2),t=Math.min(y1,y2),w=Math.abs(x2-
   mq.style.left=l+"px";mq.style.top=t+"px";mq.style.width=w+"px";mq.style.height=h+"px";mqs.textContent=Math.round(w*2)+" × "+Math.round(h*2);return{l:l,t:t,w:w,h:h};}
 function rel(el){var r=el.getBoundingClientRect(),d=desk.getBoundingClientRect();return{l:r.left-d.left,t:r.top-d.top,w:r.width,h:r.height};}
 
+var curS=scenes[0];
 function load(s){
+  curS=s;
   wt.textContent=s.t;wb.className="body "+s.c;wb.innerHTML="";
   s.lines.forEach(function(L){var d=document.createElement("div");d.className="line"+(L[2]?" "+L[2]:"");d.textContent=L[0];d._a=L[1]||"";wb.appendChild(d);});
 }
@@ -346,8 +348,9 @@ function end(e){
   if(!drag)return;var d=desk.getBoundingClientRect(),b=box(drag.x,drag.y,e.clientX-d.left,e.clientY-d.top);drag=null;
   shoot();
   if(b.w<12&&b.h<12){step(-1);idle=setTimeout(auto,6000);return;}
-  var hit=null;[].forEach.call(wb.children,function(L){var r=rel(L);if(!hit&&r.l<b.l+b.w&&r.l+r.w>b.l&&r.t<b.t+b.h&&r.t+r.h>b.t)hit=L;});
-  var txt=hit?(hit._a||"That’s the "+(hit.classList.contains("meta")?"email header":"heading")+". Drag over the part you want explained and Pinn will break it down."):"Nothing to read there. Drag over some text and Pinn will explain it.";
+  var hits=[];[].forEach.call(wb.children,function(L,i){var r=rel(L);if(r.l<b.l+b.w&&r.l+r.w>b.l&&r.t<b.t+b.h&&r.t+r.h>b.t)hits.push(i);});
+  var hi=hits.indexOf(curS.target)>=0?curS.target:hits[0],hit=hi==null?null:wb.children[hi];
+  var txt=hit?hit._a:"Nothing to read there. Drag over some text and Pinn will explain it.";
   step(2);pinNote(b,txt,false,hit?hit.textContent.trim():"");idle=setTimeout(auto,7000);
 }
 wb.addEventListener("pointerup",end);wb.addEventListener("pointercancel",end);
