@@ -110,7 +110,7 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .tbar i{width:11px;height:11px;border-radius:50%;display:block}
 .tbar i:nth-child(1){background:#FF5F57}.tbar i:nth-child(2){background:#FEBC2E}.tbar i:nth-child(3){background:#28C840}
 .tbar span{margin:0 auto;transform:translateX(-20px)}
-.body{position:relative;min-height:340px;padding:26px 26px 34px;cursor:crosshair;touch-action:none}
+.body{position:relative;min-height:380px;padding:26px 26px 34px;cursor:crosshair;touch-action:none}
 .body .line{padding:5px 0;line-height:1.5;transition:opacity .3s}
 .body.code{font-family:var(--mono);font-size:.84rem;white-space:pre-wrap}
 @media(max-width:460px){.body.code{font-size:.76rem}.body{padding:22px 18px 30px}.st{font-size:.85rem;padding:6px 10px 6px 6px}.steps{gap:2px}}
@@ -140,18 +140,32 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .cursor .cross{display:none}.cursor.x .arrow{display:none}.cursor.x .cross{display:block}
 .cursor.down svg{transform:scale(.85)}
 
-/* pinned note */
-.note{position:absolute;z-index:4;width:min(300px,86%);background:var(--note);color:var(--noteink);padding:20px 18px 16px;border-radius:2px 2px 10px 2px;box-shadow:0 18px 30px -12px rgba(40,30,0,.45),0 1px 2px rgba(0,0,0,.15);font-size:1rem;line-height:1.45;transform:rotate(-1.8deg);transform-origin:50% 0}
-.note::before{content:"";position:absolute;top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FF8A7E,var(--pin) 55%,#9E2117);box-shadow:0 3px 4px rgba(0,0,0,.35)}
-.note .who{display:flex;align-items:center;gap:6px;font-weight:800;font-size:.82rem;margin-bottom:6px;opacity:.75}
-.note .who i{width:7px;height:7px;border-radius:50%;background:var(--pinn);display:block}
-.note .txt::after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:currentColor;animation:blink 1s steps(1) infinite}
+/* Pinn panel (matches the app) */
+.note{position:absolute;z-index:4;width:min(310px,90%);background:#2A2D32;color:#F2F3F5;border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  box-shadow:0 26px 50px -16px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.25);font-size:.92rem;line-height:1.45;overflow:hidden;transform-origin:50% 0}
+.note .ph{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.note .ph b{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:5px}
+.note .ph b i{width:6px;height:6px;border-radius:50%;background:#3DDC7A;display:block;box-shadow:0 0 8px #3DDC7A}
+.note .ph svg{display:block;opacity:.45}
+.note .ph .ctl{display:flex;gap:9px;align-items:center}
+.note .ph .ctl span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25)}
+.note .pm{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.note .chip{align-self:flex-end;max-width:82%;display:flex;align-items:center;gap:8px;background:#3A3E45;border-radius:10px 10px 3px 10px;padding:6px 9px 6px 6px;font-size:.78rem;color:#C9CDD4}
+.note .chip span{flex:0 0 auto;width:34px;height:24px;border-radius:4px;background:#F4F6F9;position:relative;overflow:hidden}
+.note .chip span::before{content:"";position:absolute;left:4px;right:6px;top:7px;height:2px;background:#9AA3B2;box-shadow:0 5px 0 #C93636,0 10px 0 #9AA3B2}
+.note .chip em{font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.note .txt{font-weight:500;min-height:2.9em}
+.note .txt::after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#3DDC7A;animation:blink 1s steps(1) infinite}
 .note.done .txt::after{display:none}
+.note .pf{display:flex;gap:8px;align-items:center;padding:10px 12px;border-top:1px solid rgba(255,255,255,.07)}
+.note .pf .cam{width:32px;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;flex:0 0 auto}
+.note .pf .ask{flex:1;height:32px;border-radius:9px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;padding:0 10px;color:#8C929C;font-size:.82rem;min-width:0}
+.note .pf .send{width:32px;height:32px;border-radius:9px;background:#2FBF64;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 0 14px rgba(47,191,100,.45)}
 @keyframes blink{50%{opacity:0}}
-.note.in{animation:drop .55s cubic-bezier(.3,1.5,.5,1) both}
-.note.out{animation:lift .35s ease-in both}
-@keyframes drop{from{opacity:0;transform:translateY(-26px) rotate(-9deg) scale(1.05)}}
-@keyframes lift{to{opacity:0;transform:translateY(-18px) rotate(4deg)}}
+.note.in{animation:pop .42s cubic-bezier(.25,1.35,.5,1) both}
+.note.out{animation:shut .25s ease-in both}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.94)}}
+@keyframes shut{to{opacity:0;transform:scale(.96)}}
 
 /* steps under the demo */
 .steps{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
@@ -162,8 +176,8 @@ h1 .ln:nth-child(2)>span{animation-delay:.09s}h1 .ln:nth-child(3)>span{animation
 .try{margin-top:10px;font-size:.88rem;color:var(--muted);padding-left:8px}
 
 /* success note in signup */
-.signup .note{position:relative;width:auto;max-width:400px;margin-top:14px;font-size:1.08rem}
-.signup .note b{font-size:1.5rem;letter-spacing:-.02em}
+.signup .note{position:relative;width:auto;max-width:400px;margin-top:4px;font-size:1rem}
+.signup .note .txt b{font-size:1.35rem;letter-spacing:-.02em;color:#3DDC7A}
 
 footer{margin-top:auto;padding:40px 24px 30px;max-width:1140px;width:100%;margin-left:auto;margin-right:auto;font-size:.88rem;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{font-weight:700;text-decoration:none;color:var(--ink)}
@@ -180,7 +194,7 @@ footer a{font-weight:700;text-decoration:none;color:var(--ink)}
 <main class="hero">
   <div>
     <h1><span class="ln"><span>Drag a box</span></span><span class="ln"><span>around anything.</span></span><span class="ln"><span>Get the answer.</span></span></h1>
-    <p class="lede">Press <kbd class="mod">⌘</kbd> <kbd>⇧</kbd> <kbd>P</kbd>, select any part of your screen, and Pinn sticks the answer right next to it. Coming soon for Mac and Windows.</p>
+    <p class="lede">Press <kbd class="mod">⌘</kbd> <kbd>⇧</kbd> <kbd>P</kbd>, select any part of your screen, and the answer pops up right next to it. Coming soon for Mac and Windows.</p>
     <div class="signup" id="signup">
       <form class="join" id="join" novalidate>
         <input type="email" id="email" placeholder="you@email.com" autocomplete="email" required aria-label="Email address">
@@ -227,6 +241,13 @@ var clock=document.getElementById("clock");
 function tick(){clock.textContent=new Date().toLocaleTimeString([],{weekday:"short",hour:"numeric",minute:"2-digit"});}
 tick();setInterval(tick,15000);
 
+var ICON_MENU='<svg width="14" height="12" viewBox="0 0 14 12"><path d="M1 1h12M1 6h12M1 11h12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>',
+ICON_GEAR='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+ICON_CAM='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B9BEC6" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5"/></svg>',
+ICON_SEND='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06210F" stroke-width="2.4" stroke-linejoin="round"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg>';
+function panelHTML(inner,footer){return '<div class="ph">'+ICON_MENU+'<b>.Pinn<i></i></b><span class="ctl">'+ICON_GEAR+'<span></span></span></div><div class="pm">'+inner+'</div>'+(footer?'<div class="pf"><span class="cam">'+ICON_CAM+'</span><span class="ask">Ask anything…</span><span class="send">'+ICON_SEND+'</span></div>':'');}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
 /* waitlist */
 var SB="https://ihbblnbqjzdewiopqmxd.supabase.co",KEY="sb_publishable_vqKKGrWuY7C6H3DfyoTPVQ_cGqBlLjS";
 var form=document.getElementById("join"),em=document.getElementById("email"),go=document.getElementById("go"),msg=document.getElementById("msg");
@@ -240,7 +261,7 @@ form.addEventListener("submit",function(ev){
   .then(function(d){
     form.remove();msg.remove();
     var n=document.createElement("div");n.className="note in done";n.setAttribute("role","status");
-    n.innerHTML='<div class="who"><i></i>Pinn</div><div class="txt">'+(d.new?"You’re in. You’re <b>#"+d.position+"</b> on the list, and we’ll email you when it’s your turn.":"You’re already on the list at <b>#"+d.position+"</b>. We’ll email you soon.")+"</div>";
+    n.innerHTML=panelHTML('<div class="txt">'+(d.new?"You’re in. You’re <b>#"+d.position+"</b> on the list, and we’ll email you when it’s your turn.":"You’re already on the list at <b>#"+d.position+"</b>. We’ll email you soon.")+'</div>',false);
     document.getElementById("signup").appendChild(n);
   })
   .catch(function(){go.disabled=false;go.textContent="Get early access";msg.className="hint err";msg.textContent="That didn’t go through. Check your connection and try again.";});
@@ -279,8 +300,8 @@ function load(s){
   s.lines.forEach(function(L){var d=document.createElement("div");d.className="line"+(L[2]?" "+L[2]:"");d.textContent=L[0];d._a=L[1]||"";wb.appendChild(d);});
 }
 function clearNote(){if(!note)return Promise.resolve();var n=note;note=null;n.classList.remove("in");n.classList.add("out");return sleep(350).then(function(){n.remove();});}
-function pinNote(b,text,instant){
-  var n=document.createElement("div");n.className="note in";n.innerHTML='<div class="who"><i></i>Pinn</div><div class="txt"></div>';
+function pinNote(b,text,instant,cap){
+  var n=document.createElement("div");n.className="note in";n.innerHTML=panelHTML('<div class="chip"><span></span><em>'+esc(cap||"Screenshot")+'</em></div><div class="txt"></div>',true);
   desk.appendChild(n);note=n;n.querySelector(".txt").textContent=text;
   var dw=desk.clientWidth,dh=desk.clientHeight,nw=n.offsetWidth;
   var x=Math.max(8,Math.min(dw-nw-8,b.l+b.w-nw*0.6)),y=b.t+b.h+18;
@@ -308,7 +329,7 @@ async function auto(){
     step(1);cur.classList.add("down");box(x1,y1,x1,y1);mq.classList.add("on");
     await tween(900,function(t){var x=x1+(x2-x1)*t,y=y1+(y2-y1)*t;pos(x,y);box(x1,y1,x,y);});if(!alive())return;
     await sleep(200);cur.classList.remove("down");var b=box(x1,y1,x2,y2);shoot();cur.classList.remove("x");
-    step(2);await pinNote(b,wb.children[s.target]._a);if(!alive())return;
+    step(2);await pinNote(b,wb.children[s.target]._a,false,wb.children[s.target].textContent.trim());if(!alive())return;
     await sleep(3400);if(!alive())return;
   }
 }
@@ -327,12 +348,12 @@ function end(e){
   if(b.w<12&&b.h<12){step(-1);idle=setTimeout(auto,6000);return;}
   var hit=null;[].forEach.call(wb.children,function(L){var r=rel(L);if(!hit&&r.l<b.l+b.w&&r.l+r.w>b.l&&r.t<b.t+b.h&&r.t+r.h>b.t)hit=L;});
   var txt=hit?(hit._a||"That’s the "+(hit.classList.contains("meta")?"email header":"heading")+". Drag over the part you want explained and Pinn will break it down."):"Nothing to read there. Drag over some text and Pinn will explain it.";
-  step(2);pinNote(b,txt);idle=setTimeout(auto,7000);
+  step(2);pinNote(b,txt,false,hit?hit.textContent.trim():"");idle=setTimeout(auto,7000);
 }
 wb.addEventListener("pointerup",end);wb.addEventListener("pointercancel",end);
 
 load(scenes[0]);
-if(calm){var tr=rel(wb.children[3]);var b=box(tr.l-8,tr.t-8,tr.l+tr.w+8,tr.t+tr.h+8);mq.classList.add("on");step(2);pinNote(b,scenes[0].lines[3][1],true);}
+if(calm){var tr=rel(wb.children[3]);var b=box(tr.l-8,tr.t-8,tr.l+tr.w+8,tr.t+tr.h+8);mq.classList.add("on");step(2);pinNote(b,scenes[0].lines[3][1],true,scenes[0].lines[3][0]);}
 else setTimeout(auto,1100);
 })();
 </script>
